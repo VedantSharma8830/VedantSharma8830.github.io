@@ -1,7 +1,9 @@
 /* App logic: renders CV data (data.js) and powers the Customise panel. */
 (function () {
   "use strict";
-  var CV = window.CV, DEF = window.SITE_DEFAULTS, KEY = "vs-prefs";
+  var CV = window.CV, DEF = window.SITE_DEFAULTS, KEY = "vs-prefs", OWN = "vs-owner";
+  var EDIT_HASH = "f5518bb0c93704618f580f49faed2256f5f9b37072859f0f3ded4aca7ba5930d";
+  var owner = false; try { owner = localStorage.getItem(OWN) === "1"; } catch (e) {}
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var root = document.documentElement;
@@ -128,12 +130,13 @@
       if (navigator.clipboard) navigator.clipboard.writeText(CV.email).then(done, function () { toast(CV.email); }); else toast(CV.email);
     });
     $("#shareBtn").addEventListener("click", function () {
-      var data = { title: CV.name + " · Portfolio", text: CV.name + " — " + CV.title, url: location.href.split("#")[0] };
+      var data = { title: CV.name + " · Portfolio", text: CV.name + " — " + CV.title, url: location.origin + location.pathname };
       if (navigator.share) navigator.share(data).catch(function () {});
       else if (navigator.clipboard) navigator.clipboard.writeText(data.url).then(function () { toast("Link copied"); });
     });
     $("#themeQuick").addEventListener("click", function () {
-      var cur = root.getAttribute("data-theme"); setPref("theme", cur === "dark" ? "light" : "dark");
+      var cur = root.getAttribute("data-theme"), nt = cur === "dark" ? "light" : "dark";
+      if (owner) setPref("theme", nt); else { prefs.theme = nt; apply(); }
     });
   }
   function setChip(id) {
@@ -155,13 +158,13 @@
   /* ---------- customise ---------- */
   var prefs;
   function load() {
-    var saved = {}; try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+    var saved = {}; if (owner) { try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {} }
     var p = {}; for (var k in DEF) p[k] = DEF[k];
     for (var j in saved) if (j in DEF) p[j] = saved[j];
     if (!Array.isArray(p.hidden)) p.hidden = [];
     return p;
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {} var n = $("#savedNote"); n.classList.add("show"); clearTimeout(save._t); save._t = setTimeout(function () { n.classList.remove("show"); }, 1400); }
+  function save() { if (!owner) return; try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {} var n = $("#savedNote"); n.classList.add("show"); clearTimeout(save._t); save._t = setTimeout(function () { n.classList.remove("show"); }, 1400); }
   function lum(hex) {
     var m = hex.replace("#", ""); if (m.length === 3) m = m.split("").map(function (c) { return c + c; }).join("");
     var rgb = [0, 2, 4].map(function (i) { var v = parseInt(m.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); });
@@ -210,7 +213,8 @@
     var panel = $("#panel"), scrim = $("#scrim"), fab = $("#fab");
     function openP() { scrim.hidden = false; requestAnimationFrame(function () { scrim.classList.add("show"); panel.classList.add("open"); }); panel.setAttribute("aria-hidden", "false"); fab.setAttribute("aria-expanded", "true"); fab.style.visibility = "hidden"; setTimeout(function () { $("#panelClose").focus({ preventScroll: true }); }, 50); }
     function closeP() { panel.classList.remove("open"); scrim.classList.remove("show"); panel.style.transform = ""; panel.setAttribute("aria-hidden", "true"); fab.setAttribute("aria-expanded", "false"); fab.style.visibility = ""; setTimeout(function () { scrim.hidden = true; }, 300); }
-    fab.addEventListener("click", openP); scrim.addEventListener("click", closeP); $("#panelClose").addEventListener("click", closeP);
+    fab.addEventListener("click", openP);
+    $("#lockPrefs").addEventListener("click", function () { try { localStorage.removeItem(OWN); } catch (e) {} owner = false; closeP(); prefs = load(); apply(); setTimeout(function () { fab.hidden = true; panel.hidden = true; }, 320); toast("Customise hidden on this device"); }); scrim.addEventListener("click", closeP); $("#panelClose").addEventListener("click", closeP);
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && panel.classList.contains("open")) closeP(); });
     // swipe down to close
     var y0 = null, dy = 0;
@@ -227,5 +231,20 @@
   buildPanel();
   apply();
   wire();
+  function showOwner() { $("#fab").hidden = false; $("#panel").hidden = false; }
+  if (owner) showOwner();
+  (function () {
+    var q = new URLSearchParams(location.search), code = q.get("edit");
+    if (!code || !window.crypto || !crypto.subtle || !window.TextEncoder) return;
+    crypto.subtle.digest("SHA-256", new TextEncoder().encode(code)).then(function (buf) {
+      var hex = Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
+      if (hex !== EDIT_HASH) return;
+      try { localStorage.setItem(OWN, "1"); } catch (e) {}
+      q.delete("edit"); var s = q.toString();
+      history.replaceState(null, "", location.pathname + (s ? "?" + s : "") + location.hash);
+      if (!owner) { owner = true; prefs = load(); apply(); }
+      showOwner(); toast("Customise unlocked on this device");
+    }).catch(function () {});
+  })();
   window.__vsPrefs = function () { return prefs; };
 })();

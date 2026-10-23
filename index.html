@@ -108,13 +108,13 @@
   </section>
 </main>
 
-<button class="fab" id="fab" aria-label="Open customise panel" aria-controls="panel" aria-expanded="false">
+<button class="fab" id="fab" hidden aria-label="Open customise panel" aria-controls="panel" aria-expanded="false">
   <svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2z"/></svg>
   <span>Customise</span>
 </button>
 
 <div class="scrim" id="scrim" hidden></div>
-<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true">
+<aside class="panel" id="panel" hidden role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true">
   <div class="grab" id="grab" aria-hidden="true"><i></i></div>
   <div class="panel-head">
     <h3 id="panelTitle">Customise</h3>
@@ -148,6 +148,7 @@
       <div id="sectionToggles" class="toggles"></div>
     </fieldset>
     <button class="btn ghost full" id="resetPrefs">Reset to default</button>
+    <button class="linkish" id="lockPrefs">Hide Customise on this device</button>
     <p class="saved" id="savedNote">Saved on this device ✓</p>
   </div>
 </aside>
