@@ -136,7 +136,7 @@
     });
     $("#themeQuick").addEventListener("click", function () {
       var cur = root.getAttribute("data-theme"), nt = cur === "dark" ? "light" : "dark";
-      if (owner) setPref("theme", nt); else { prefs.theme = nt; apply(); }
+      if (owner) setPref("theme", nt);
     });
   }
   function setChip(id) {
@@ -214,7 +214,7 @@
     function openP() { scrim.hidden = false; requestAnimationFrame(function () { scrim.classList.add("show"); panel.classList.add("open"); }); panel.setAttribute("aria-hidden", "false"); fab.setAttribute("aria-expanded", "true"); fab.style.visibility = "hidden"; setTimeout(function () { $("#panelClose").focus({ preventScroll: true }); }, 50); }
     function closeP() { panel.classList.remove("open"); scrim.classList.remove("show"); panel.style.transform = ""; panel.setAttribute("aria-hidden", "true"); fab.setAttribute("aria-expanded", "false"); fab.style.visibility = ""; setTimeout(function () { scrim.hidden = true; }, 300); }
     fab.addEventListener("click", openP);
-    $("#lockPrefs").addEventListener("click", function () { try { localStorage.removeItem(OWN); } catch (e) {} owner = false; closeP(); prefs = load(); apply(); setTimeout(function () { fab.hidden = true; panel.hidden = true; }, 320); toast("Customise hidden on this device"); }); scrim.addEventListener("click", closeP); $("#panelClose").addEventListener("click", closeP);
+    $("#lockPrefs").addEventListener("click", function () { try { localStorage.removeItem(OWN); } catch (e) {} owner = false; closeP(); prefs = load(); apply(); $("#themeQuick").hidden = true; setTimeout(function () { fab.hidden = true; panel.hidden = true; }, 320); toast("Customise hidden on this device"); }); scrim.addEventListener("click", closeP); $("#panelClose").addEventListener("click", closeP);
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && panel.classList.contains("open")) closeP(); });
     // swipe down to close
     var y0 = null, dy = 0;
@@ -231,7 +231,7 @@
   buildPanel();
   apply();
   wire();
-  function showOwner() { $("#fab").hidden = false; $("#panel").hidden = false; }
+  function showOwner() { $("#fab").hidden = false; $("#panel").hidden = false; $("#themeQuick").hidden = false; }
   if (owner) showOwner();
   (function () {
     var q = new URLSearchParams(location.search), code = q.get("edit");

@@ -238,5 +238,5 @@ legend{font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:upperc
 [data-theme=light] .avatar.has-photo{box-shadow:0 0 0 3px var(--accent),0 0 0 9px var(--accent-soft),0 16px 40px rgba(20,40,80,.22)}
 @media (min-width:760px){.avatar.has-photo{width:172px;height:172px}}
 
-.fab[hidden],.panel[hidden]{display:none!important}
+.fab[hidden],.panel[hidden],.icon-btn[hidden]{display:none!important}
 .linkish{display:block;margin:14px auto 0;padding:10px 14px;min-height:44px;background:none;border:0;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
