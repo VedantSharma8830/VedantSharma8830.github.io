@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vedant J. Sharma · Electrical Engineering Student</title>
+<meta name="description" content="Portfolio & CV of Vedant J. Sharma, third-year Electrical Engineering student from Maharashtra, India.">
+<meta name="theme-color" content="#0b1220">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Vedant J. Sharma · Electrical Engineering Student">
+<meta property="og:description" content="Portfolio & CV · Transformer training, automation projects, B.E. Electrical Engineering · Maharashtra, India">
+<meta property="og:image" content="https://vedantsharma8830.github.io/og-photo.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://vedantsharma8830.github.io/">
+<link rel="canonical" href="https://vedantsharma8830.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script src="prefs-boot.js"></script>
+</head>
+<body>
+<div class="bg-circuit" aria-hidden="true"></div>
+
+<header class="topbar">
+  <a class="brand" href="#hero" aria-label="Back to top"><span class="brand-mark" id="brandMark">VS</span><span class="brand-name" id="brandName">Vedant</span></a>
+  <div class="topbar-actions">
+    <button class="icon-btn" id="themeQuick" aria-label="Toggle light or dark mode"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+    <button class="icon-btn" id="shareBtn" aria-label="Share this page"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></button>
+  </div>
+</header>
+
+<nav class="chips" id="chips" aria-label="Sections"></nav>
+
+<main id="main">
+  <section id="hero" class="hero" data-section="hero">
+    <svg class="hero-trace" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+      <path class="trace" d="M0 90 H90 L110 70 H190 L210 40 H300 L320 60 H400"/>
+      <path class="trace t2" d="M0 110 H60 L80 100 H240 L260 85 H400"/>
+      <circle cx="110" cy="70" r="3"/><circle cx="210" cy="40" r="3"/><circle cx="320" cy="60" r="3"/><circle cx="260" cy="85" r="3"/>
+      <circle class="pulse" r="4"><animateMotion dur="5s" repeatCount="indefinite" path="M0 90 H90 L110 70 H190 L210 40 H300 L320 60 H400"/></circle>
+    </svg>
+    <div class="avatar has-photo" id="heroAvatar"><picture id="heroPic"><source srcset="photo.webp" type="image/webp"><img id="heroPhoto" src="photo.jpg" alt="Photo of Vedant J. Sharma" width="480" height="480" decoding="async" fetchpriority="high"></picture><span id="heroInitials" aria-hidden="true">VS</span><i class="spark" aria-hidden="true"></i></div>
+    <p class="eyebrow" id="heroTagline"></p>
+    <h1 id="heroName"></h1>
+    <p class="hero-title" id="heroTitle"></p>
+    <p class="hero-loc"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span id="heroLoc"></span></p>
+    <div class="hero-cta">
+      <a class="btn primary" id="ctaCall"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>Call</a>
+      <a class="btn" id="ctaMail"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>Email</a>
+      <a class="btn wide" id="ctaCv" download><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download CV</a>
+    </div>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <section id="about" data-section="about" class="sec">
+    <h2><span class="sec-ico">⚡</span>About</h2>
+    <div class="card reveal"><p class="lead" id="objective"></p></div>
+    <ul class="summary" id="summary"></ul>
+  </section>
+
+  <section id="education" data-section="education" class="sec">
+    <h2><span class="sec-ico">🎓</span>Education</h2>
+    <ol class="timeline" id="education-list"></ol>
+  </section>
+
+  <section id="experience" data-section="experience" class="sec">
+    <h2><span class="sec-ico">🔧</span>Training &amp; Experience</h2>
+    <div id="experience-list"></div>
+  </section>
+
+  <section id="projects" data-section="projects" class="sec">
+    <h2><span class="sec-ico">💡</span>Projects</h2>
+    <div id="projects-list" class="stack"></div>
+  </section>
+
+  <section id="skills" data-section="skills" class="sec">
+    <h2><span class="sec-ico">🧩</span>Skills</h2>
+    <p class="hint">Swipe →</p>
+    <div class="carousel" id="skills-list" tabindex="0" aria-label="Skill groups, swipe sideways"></div>
+    <div class="dots" id="skills-dots" aria-hidden="true"></div>
+  </section>
+
+  <section id="interests" data-section="interests" class="sec">
+    <h2><span class="sec-ico">🔌</span>Areas of Interest</h2>
+    <div class="tag-cloud" id="interests-list"></div>
+  </section>
+
+  <section id="professional" data-section="professional" class="sec">
+    <h2><span class="sec-ico">🤝</span>Professional Skills</h2>
+    <div class="grid2" id="professional-list"></div>
+  </section>
+
+  <section id="contact" data-section="contact" class="sec">
+    <h2><span class="sec-ico">📡</span>Contact</h2>
+    <div class="contact-card card reveal">
+      <a class="contact-row" id="cPhone"><span class="ci"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span><small>Tap to call</small><b id="cPhoneTxt"></b></span></a>
+      <a class="contact-row" id="cMail"><span class="ci"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span><span><small>Tap to email</small><b id="cMailTxt"></b></span></a>
+      <div class="contact-row static"><span class="ci"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small>Based in</small><b id="cLoc"></b></span></div>
+      <div class="contact-actions">
+        <button class="btn" id="copyEmail">Copy email</button>
+        <a class="btn primary" id="cCv" download>Download CV</a>
+      </div>
+    </div>
+    <dl class="extra" id="additional"></dl>
+    <p class="foot">© <span id="year"></span> <span id="footName"></span></p>
+  </section>
+</main>
+
+<button class="fab" id="fab" aria-label="Open customise panel" aria-controls="panel" aria-expanded="false">
+  <svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2z"/></svg>
+  <span>Customise</span>
+</button>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true">
+  <div class="grab" id="grab" aria-hidden="true"><i></i></div>
+  <div class="panel-head">
+    <h3 id="panelTitle">Customise</h3>
+    <button class="icon-btn" id="panelClose" aria-label="Close customise panel"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="panel-body">
+    <fieldset><legend>Mode</legend>
+      <div class="seg" data-pref="theme">
+        <button data-v="light">☀️ Light</button><button data-v="dark">🌙 Dark</button><button data-v="auto">⚙️ Auto</button>
+      </div>
+    </fieldset>
+    <fieldset><legend>Accent colour</legend>
+      <div class="swatches" id="swatches"></div>
+      <label class="picker"><input type="color" id="accentPicker" aria-label="Pick any accent colour"><span>Custom colour</span><code id="accentHex"></code></label>
+    </fieldset>
+    <fieldset><legend>Font style</legend>
+      <div class="seg wrap" data-pref="font">
+        <button data-v="modern" class="f-modern">Modern</button><button data-v="technical" class="f-technical">Technical</button><button data-v="classic" class="f-classic">Classic</button><button data-v="rounded" class="f-rounded">Rounded</button>
+      </div>
+    </fieldset>
+    <fieldset><legend>Layout density</legend>
+      <div class="seg" data-pref="density">
+        <button data-v="compact">Compact</button><button data-v="comfortable">Comfy</button><button data-v="spacious">Spacious</button>
+      </div>
+    </fieldset>
+    <fieldset><legend>Effects</legend>
+      <label class="switch"><input type="checkbox" id="motionToggle"><i></i><span>Animations</span></label>
+      <label class="switch"><input type="checkbox" id="circuitToggle"><i></i><span>Circuit background</span></label>
+    </fieldset>
+    <fieldset><legend>Show sections</legend>
+      <div id="sectionToggles" class="toggles"></div>
+    </fieldset>
+    <button class="btn ghost full" id="resetPrefs">Reset to default</button>
+    <p class="saved" id="savedNote">Saved on this device ✓</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
